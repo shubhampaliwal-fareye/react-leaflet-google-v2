@@ -1,6 +1,6 @@
 {
   "name": "react-leaflet-google-v2",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "google layer as React compoment for Leaflet",
   "main": "src/index.js",
   "scripts": {
@@ -58,7 +58,7 @@
     "@babel/runtime": "^7.6.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "babel-plugin-dev-expression": "^0.2.2",    
+    "babel-plugin-dev-expression": "^0.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^6.0.3",
     "eslint": "^6.5.1",
