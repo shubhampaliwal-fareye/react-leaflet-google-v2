@@ -1,71 +1,53 @@
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+/* eslint-disable */
 module.exports = {
-  entry: {
-    app: './src/index.js',
-  },
-  plugins: [
-    // new CleanWebpackPlugin(['dist/*']) for < v2 versions of CleanWebpackPlugin
-    new CleanWebpackPlugin()
-  ],
-  externals: [
-    {
-      leaflet: {
-        amd: 'leaflet',
-        commonjs: 'leaflet',
-        commonjs2: 'leaflet',
-        root: 'L'
-      }
-    },
-    {
-      jquery: {
-        amd: 'jquery',
-        commonjs: 'jquery',
-        commonjs2: 'jquery',
-        root: 'JQuery'
-      }
-    },
-    {
-      'react-leaflet': {
-        amd: 'react-leaflet',
-        commonjs: 'react-leaflet',
-        commonjs2: 'react-leaflet'
-      }
-    },
-    {
-      react: {
-        amd: 'react',
-        commonjs: 'react',
-        commonjs2: 'react',
-        root: 'React'
-      }
-    },
-    {
-      'google-maps': {
-        amd: 'google-maps',
-        commonjs: 'google-maps',
-        commonjs2: 'google-maps',
-        root: 'GoogleMapsLoader'
-      }
-    }
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      }
-    ]
-  },
-  output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
-    libraryTarget: "umd",
-    library: "react-leaflet-google-v2"
-  },
+	entry: './dist/react-leaflet-google-v2.min.js',
+	output: {
+		library: {
+			root: 'ReactLeafletGoogle',
+			amd: 'react-leaflet-google-v2',
+			commonjs: 'react-leaflet-google-v2'
+		},
+		libraryExport: 'default',
+		libraryTarget: 'umd'
+	},
+	externals: {
+		debug: 'debug',
+		leaflet: {
+			commonjs: 'leaflet',
+			commonjs2: 'leaflet',
+			root: 'L'
+		},
+		'react-leaflet': {
+			commonjs: 'react-leaflet',
+			commonjs2: 'react-leaflet',
+			root: 'ReactLeaflet'
+		},
+		react: {
+			commonjs: 'react',
+			commonjs2: 'react',
+			root: 'React'
+		}
+	},
+	mode: 'production',
+	module: {
+		rules: [
+			{
+				test: /\.(js|jsx)$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['env', 'react'],
+                    plugins: ['transform-class-properties']
+                }
+			},
+			{
+				test: /\.css$/,
+				exclude: /node_modules/,
+				use: [
+					{ loader: 'style-loader' },
+					{ loader: 'css-loader' }
+				]
+			}
+		]
+	}
 };
