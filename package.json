@@ -2,13 +2,13 @@
   "name": "react-leaflet-google-v2",
   "version": "5.0.1",
   "description": "google layer as React compoment for Leaflet",
-  "main": "dist/react-leaflet-google.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean:lib": "rmdir /s ./lib",
     "compile:lib": "babel src --out-dir lib",
     "build:lib": "npm run compile:lib",
-    "build:dist": "webpack --mode production src/index.js dist/react-leaflet-google.js & webpack -p src/index.js dist/react-leaflet-google.min.js",
+    "build:dist": "webpack --config webpack.prod.js",
     "build": "npm run build:lib && npm run build:dist",
     "example": "webpack-dev-server --config ./example/webpack.config.js",
     "lint": "eslint ./src",
@@ -36,8 +36,9 @@
   },
   "homepage": "https://github.com/TA-Geoforce/react-leaflet-google-v2#readme",
   "dependencies": {
-    "react-leaflet": "^2.5.0",
-    "google-maps": "^3.3.0"
+    "clean-webpack-plugin": "^3.0.0",
+    "google-maps": "^3.3.0",
+    "react-leaflet": "^2.5.0"
   },
   "peerDependencies": {
     "leaflet": "^1.5.0",
@@ -45,7 +46,6 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.6.3",
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -56,6 +56,7 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.6.3",
+    "@babel/runtime": "^7.6.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-dev-expression": "^0.2.2",
@@ -68,11 +69,11 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.16.0",
-    "html-webpack-plugin": "^3.2.0",
     "file-loader": "^4.2.0",
     "flow-bin": "^0.109.0",
     "flow-copy-source": "^2.0.8",
     "flow-typed": "^2.6.1",
+    "html-webpack-plugin": "^3.2.0",
     "leaflet": "^1.3.4",
     "prettier": "^1.18.2",
     "prettier-eslint": "^9.0.0",
@@ -82,6 +83,7 @@
     "warning": "^4.0.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2"
+    "webpack-dev-server": "^3.8.2",
+    "webpack-merge": "^4.2.2"
   }
 }
